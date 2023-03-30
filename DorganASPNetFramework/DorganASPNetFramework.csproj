@@ -172,6 +172,7 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TestEntitiesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\WebaypiaiController.cs" />
     <Compile Include="EquipmentType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
