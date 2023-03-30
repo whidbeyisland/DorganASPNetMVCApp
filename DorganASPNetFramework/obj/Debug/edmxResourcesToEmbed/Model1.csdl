@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dorgandbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dorgandbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EquipmentTypes" EntityType="dorgandbModel.EquipmentType" />
+    <EntitySet Name="PartTypes" EntityType="dorgandbModel.PartType" />
+    <EntitySet Name="Suppliers" EntityType="dorgandbModel.Supplier" />
+    <EntitySet Name="TestEntities" EntityType="dorgandbModel.TestEntity" />
+    <EntitySet Name="TestBEntities" EntityType="dorgandbModel.TestBEntity" />
+    <EntitySet Name="TestCEntities" EntityType="dorgandbModel.TestCEntity" />
+    <AssociationSet Name="TestBEntityTestCEntity" Association="dorgandbModel.TestBEntityTestCEntity">
+      <End Role="TestBEntity" EntitySet="TestBEntities" />
+      <End Role="TestCEntity" EntitySet="TestCEntities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EquipmentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" Type="String" />
+  </EntityType>
+  <EntityType Name="PartType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" Type="String" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Name" Nullable="false" Type="String" />
+    <Property Name="Address1" Nullable="false" Type="String" />
+    <Property Name="Address2" Nullable="true" Type="String" />
+    <Property Name="City" Nullable="false" Type="String" />
+    <Property Name="State" Nullable="false" Type="String" />
+    <Property Name="ZIP" Nullable="false" Type="String" />
+  </EntityType>
+  <EntityType Name="TestEntity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestBEntity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="TestCEntities" Relationship="dorgandbModel.TestBEntityTestCEntity" FromRole="TestBEntity" ToRole="TestCEntity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestCEntity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="TestBEntity" Relationship="dorgandbModel.TestBEntityTestCEntity" FromRole="TestCEntity" ToRole="TestBEntity" />
+    <Property Name="TestBEntityId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="TestBEntityTestCEntity">
+    <End Type="dorgandbModel.TestBEntity" Role="TestBEntity" Multiplicity="1" />
+    <End Type="dorgandbModel.TestCEntity" Role="TestCEntity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestBEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestCEntity">
+        <PropertyRef Name="TestBEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

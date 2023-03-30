@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dorgandbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dorgandbModelStoreContainer">
+    <EntitySet Name="EquipmentTypes" EntityType="dorgandbModel.Store.EquipmentTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PartTypes" EntityType="dorgandbModel.Store.PartTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Suppliers" EntityType="dorgandbModel.Store.Suppliers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestEntities" EntityType="dorgandbModel.Store.TestEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestBEntities" EntityType="dorgandbModel.Store.TestBEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestCEntities" EntityType="dorgandbModel.Store.TestCEntities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TestBEntityTestCEntity" Association="dorgandbModel.Store.TestBEntityTestCEntity">
+      <End Role="TestBEntity" EntitySet="TestBEntities" />
+      <End Role="TestCEntity" EntitySet="TestCEntities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EquipmentTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suppliers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZIP" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestBEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestCEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TestBEntityId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="TestBEntityTestCEntity">
+    <End Role="TestBEntity" Type="dorgandbModel.Store.TestBEntities" Multiplicity="1" />
+    <End Role="TestCEntity" Type="dorgandbModel.Store.TestCEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestBEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestCEntity">
+        <PropertyRef Name="TestBEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dorgandbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dorgandbEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="EquipmentTypes" EntityType="dorgandbModel.EquipmentType" />
+          <EntitySet Name="PartTypes" EntityType="dorgandbModel.PartType" />
+          <EntitySet Name="Suppliers" EntityType="dorgandbModel.Supplier" />
+          <EntitySet Name="TestEntities" EntityType="dorgandbModel.TestEntity" />
+          <EntitySet Name="TestBEntities" EntityType="dorgandbModel.TestBEntity" />
+          <EntitySet Name="TestCEntities" EntityType="dorgandbModel.TestCEntity" />
+          <AssociationSet Name="TestBEntityTestCEntity" Association="dorgandbModel.TestBEntityTestCEntity">
+            <End Role="TestBEntity" EntitySet="TestBEntities" />
+            <End Role="TestCEntity" EntitySet="TestCEntities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EquipmentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Nullable="false" Type="String" />
+        </EntityType>
+        <EntityType Name="PartType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Nullable="false" Type="String" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Nullable="false" Type="String" />
+          <Property Name="Address1" Nullable="false" Type="String" />
+          <Property Name="Address2" Nullable="true" Type="String" />
+          <Property Name="City" Nullable="false" Type="String" />
+          <Property Name="State" Nullable="false" Type="String" />
+          <Property Name="ZIP" Nullable="false" Type="String" />
+        </EntityType>
+        <EntityType Name="TestEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestBEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TestCEntities" Relationship="dorgandbModel.TestBEntityTestCEntity" FromRole="TestBEntity" ToRole="TestCEntity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestCEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TestBEntity" Relationship="dorgandbModel.TestBEntityTestCEntity" FromRole="TestCEntity" ToRole="TestBEntity" />
+          <Property Name="TestBEntityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="TestBEntityTestCEntity">
+          <End Type="dorgandbModel.TestBEntity" Role="TestBEntity" Multiplicity="1" />
+          <End Type="dorgandbModel.TestCEntity" Role="TestCEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestBEntity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestCEntity">
+              <PropertyRef Name="TestBEntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dorgandbModelStoreContainer" CdmEntityContainer="dorgandbEntities">
+    <EntitySetMapping Name="EquipmentTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(dorgandbModel.EquipmentType)">
+        <MappingFragment StoreEntitySet="EquipmentTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(dorgandbModel.PartType)">
+        <MappingFragment StoreEntitySet="PartTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="IsTypeOf(dorgandbModel.Supplier)">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(dorgandbModel.TestEntity)">
+        <MappingFragment StoreEntitySet="TestEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestBEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(dorgandbModel.TestBEntity)">
+        <MappingFragment StoreEntitySet="TestBEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestCEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(dorgandbModel.TestCEntity)">
+        <MappingFragment StoreEntitySet="TestCEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TestBEntityId" ColumnName="TestBEntityId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

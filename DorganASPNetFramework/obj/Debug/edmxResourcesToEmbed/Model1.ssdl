@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dorgandbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dorgandbModelStoreContainer">
+    <EntitySet Name="EquipmentTypes" EntityType="dorgandbModel.Store.EquipmentTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PartTypes" EntityType="dorgandbModel.Store.PartTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Suppliers" EntityType="dorgandbModel.Store.Suppliers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestEntities" EntityType="dorgandbModel.Store.TestEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestBEntities" EntityType="dorgandbModel.Store.TestBEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TestCEntities" EntityType="dorgandbModel.Store.TestCEntities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="TestBEntityTestCEntity" Association="dorgandbModel.Store.TestBEntityTestCEntity">
+      <End Role="TestBEntity" EntitySet="TestBEntities" />
+      <End Role="TestCEntity" EntitySet="TestCEntities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EquipmentTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suppliers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZIP" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestBEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestCEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TestBEntityId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="TestBEntityTestCEntity">
+    <End Role="TestBEntity" Type="dorgandbModel.Store.TestBEntities" Multiplicity="1" />
+    <End Role="TestCEntity" Type="dorgandbModel.Store.TestCEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestBEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TestCEntity">
+        <PropertyRef Name="TestBEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
